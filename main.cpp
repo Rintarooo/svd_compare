@@ -64,7 +64,8 @@ int main(int argc, char *argv[])
 
 		cudaEventRecord(cuda_time_s, 0);
 
-		cuda_svd.set_matrix(pc_operate.data());
+		float *tmp = pc_operate.data(); 
+		cuda_svd.set_matrix(tmp, n);
 		cuda_svd.core_compute();
 		float *host_U = cuda_svd.get_host_u();
 
